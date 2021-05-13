@@ -6,6 +6,7 @@
 #         |_|                 |__/
 
 CC			= emcc
+NPM			= npm
 SRCDIR		= src
 BUILDDIR	= build
 
@@ -36,6 +37,7 @@ $(BUILDDIR)/sqlite3.wasm: $(OBJFILES)
 
 # build javascript worker source
 $(BUILDDIR)/sqlite3.worker.js: 
+	$(NPM) run build -- -o $@
 
 # purge build root
 clean:

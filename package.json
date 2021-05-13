@@ -1,0 +1,24 @@
+{
+  "name": "sqlite3.js",
+  "version": "1.0.0",
+  "description": "sqlite3 for the web",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "author": {
+    "name": "Riyaz Ali",
+    "email": "me@riyazali.net"
+  },
+  "license": "MIT",
+  "scripts": {
+    "dev": "parcel index.html -d build/ --global sqlite3",
+    "build": "parcel build lib/index.js -d build/ --global sqlite3"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5"
+  },
+  "dependencies": {
+    "comlink": "^4.3.0"
+  }
+}
