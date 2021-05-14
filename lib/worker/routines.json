@@ -1,0 +1,118 @@
+{
+  "sqlite3_open": {
+    "args": ["string", "number"],
+    "return": "number"
+  },
+  "sqlite3_errcode": {
+    "args": ["number"],
+    "return": "number"
+  },
+  "sqlite3_errmsg": {
+    "args": ["number"],
+    "return": "string"
+  },
+  "sqlite3_changes": {
+    "args": ["number"],
+    "return": "number"
+  },
+  "sqlite3_prepare_v2": {
+    "args": ["number", "string", "number", "number", "number"],
+    "return": "number"
+  },
+  "sqlite3_sql": {
+    "args": ["number"],
+    "return": "string"
+  },
+  "sqlite3_bind_parameter_count": {
+    "args": ["number"],
+    "return": "number"
+  },
+  "sqlite3_bind_parameter_index": {
+    "args": ["number", "string"],
+    "return": "number"
+  },
+  "sqlite3_bind_parameter_name": {
+    "args": ["number", "number"],
+    "return": "string"
+  },
+  "sqlite3_bind_text": {
+    "args": ["number", "number", "string", "number", "number"],
+    "return": "number"
+  },
+  "sqlite3_bind_blob": {
+    "args": ["number", "number", "string", "number", "number"],
+    "return": "number"
+  },
+  "sqlite3_bind_double": {
+    "args": ["number", "number", "number"],
+    "return": "number"
+  },
+  "sqlite3_bind_int": {
+    "args": ["number", "number", "number"],
+    "return": "number"
+  },
+  "sqlite3_bind_null": {
+    "args": ["number", "number"],
+    "return": "number"
+  },
+  "sqlite3_bind_zeroblob": {
+    "args": ["number", "number", "number"],
+    "return": "number"
+  },
+  "sqlite3_step": {
+    "args": ["number"],
+    "return": "number"
+  },
+  "sqlite3_data_count": {
+    "args": ["number"],
+    "return": "number"
+  },
+  "sqlite3_column_count": {
+    "args": ["number"],
+    "return": "number"
+  },
+  "sqlite3_column_name": {
+    "args": ["number", "number"],
+    "return": "string"
+  },
+  "sqlite3_column_text": {
+    "args": ["number", "number"],
+    "return": "string"
+  },
+  "sqlite3_column_double": {
+    "args": ["number", "number"],
+    "return": "number"
+  },
+  "sqlite3_column_int": {
+    "args": ["number", "number"],
+    "return": "number"
+  },
+  "sqlite3_column_blob": {
+    "args": ["number", "number"],
+    "return": "number"
+  },
+  "sqlite3_column_bytes": {
+    "args": ["number", "number"],
+    "return": "number"
+  },
+  "sqlite3_column_type": {
+    "args": ["number", "number"],
+    "return": "number"
+  },
+  "sqlite3_reset": {
+    "args": ["number"],
+    "return": "number"
+  },
+  "sqlite3_clear_bindings": {
+    "args": ["number"],
+    "return": "number"
+  },
+  "sqlite3_finalize": {
+    "args": ["number"],
+    "return": "number"
+  },
+  "sqlite3_close_v2": {
+    "args": ["number"],
+    "return": "number"
+  }
+}

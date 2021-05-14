@@ -20,7 +20,7 @@ CFLAGS = -O2 -DSQLITE_OMIT_LOAD_EXTENSION -DSQLITE_DISABLE_LFS \
 	-DSQLITE_THREADSAFE=0 -DSQLITE_ENABLE_NORMALIZE -DSQLITE_OS_OTHER=1
 
 # Additional flags to pass to emscripten
-EMFLAGS = --no-entry -s ALLOW_TABLE_GROWTH=1 -s EXPORTED_FUNCTIONS=@functions.json
+EMFLAGS = --no-entry -s ALLOW_TABLE_GROWTH=1 -s EXPORTED_FUNCTIONS=@functions.json -s ERROR_ON_UNDEFINED_SYMBOLS=0
 
 # compile C source-files into LLVM bitcode using emscripten
 $(BUILDDIR)/%.c.o: %.c
@@ -29,7 +29,7 @@ $(BUILDDIR)/%.c.o: %.c
 
 # link built object files into webassembly modules with debugging options applied
 $(BUILDDIR)/sqlite3.debug.wasm: $(OBJFILES)
-	$(CC) $(CFLAGS) $(EMFLAGS) -s INLINING_LIMIT=10 -s ASSERTIONS=1 -O1 -o $@ $^
+	$(CC) $(CFLAGS) $(EMFLAGS) -s INLINING_LIMIT=10 -s ASSERTIONS=1 -O1 -g -o $@ $^
 
 # link built object files into webassembly modules with release optimisations
 $(BUILDDIR)/sqlite3.wasm: $(OBJFILES)
