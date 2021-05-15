@@ -1,9 +1,10 @@
 [
   "_malloc",
   "_free",
-  "_sqlite3_open",
+  "_sqlite3_open_v2",
   "_sqlite3_errcode",
   "_sqlite3_errmsg",
+  "_sqlite3_errstr",
   "_sqlite3_changes",
   "_sqlite3_prepare_v2",
   "_sqlite3_sql",

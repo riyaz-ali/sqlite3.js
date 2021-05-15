@@ -1,6 +1,6 @@
 {
-  "sqlite3_open": {
-    "args": ["string", "number"],
+  "sqlite3_open_v2": {
+    "args": ["string", "number", "number", "string"],
     "return": "number"
   },
   "sqlite3_errcode": {
@@ -8,6 +8,10 @@
     "return": "number"
   },
   "sqlite3_errmsg": {
+    "args": ["number"],
+    "return": "string"
+  },
+  "sqlite3_errstr": {
     "args": ["number"],
     "return": "string"
   },

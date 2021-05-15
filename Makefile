@@ -13,11 +13,14 @@ BUILDDIR	= build
 CFILES		= $(shell find $(SRCDIR) -name *.c)
 OBJFILES	= $(CFILES:%=$(BUILDDIR)/%.o)
 
+INC_DIRS 	= $(shell find $(SRCDIR) -type d)
+INC_FLAGS 	= $(addprefix -I,$(INC_DIRS))
+
 # Flags to compile sqlite with
-CFLAGS = -O2 -DSQLITE_OMIT_LOAD_EXTENSION -DSQLITE_DISABLE_LFS \
+CFLAGS = $(INC_FLAGS) -O2 -DSQLITE_OMIT_LOAD_EXTENSION -DSQLITE_DISABLE_LFS \
 	-DSQLITE_ENABLE_COLUMN_METADATA -DSQLITE_ENABLE_DESERIALIZE \
 	-DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_JSON1 \
-	-DSQLITE_THREADSAFE=0 -DSQLITE_ENABLE_NORMALIZE -DSQLITE_OS_OTHER=1
+	-DSQLITE_THREADSAFE=0 -DSQLITE_ENABLE_NORMALIZE -DSQLITE_OS_OTHER=1 -DSQLITE_CORE
 
 # Additional flags to pass to emscripten
 EMFLAGS = --no-entry -s ALLOW_TABLE_GROWTH=1 -s EXPORTED_FUNCTIONS=@functions.json -s ERROR_ON_UNDEFINED_SYMBOLS=0
@@ -36,7 +39,7 @@ $(BUILDDIR)/sqlite3.wasm: $(OBJFILES)
 	$(CC) $(CFLAGS) $(EMFLAGS) -s INLINING_LIMIT=50 -O3 -flto --closure 1 -o $@ $^
 
 # build javascript worker source
-$(BUILDDIR)/sqlite3.worker.js: 
+$(BUILDDIR)/sqlite3.js: 
 	$(NPM) run build -- -o $@
 
 # purge build root
