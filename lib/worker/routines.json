@@ -3,6 +3,10 @@
     "args": ["string", "number", "number", "string"],
     "return": "number"
   },
+  "sqlite3_initialize": {
+    "args": [],
+    "return": "number"
+  },
   "sqlite3_errcode": {
     "args": ["number"],
     "return": "number"
