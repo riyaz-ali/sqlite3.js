@@ -443,5 +443,5 @@ static int memCurrentTimeInt64(sqlite3_vfs *pVfs, sqlite3_int64 *p){
 int sqlite3_memvfs_init(void){
   mem_vfs.pAppData = sqlite3_vfs_find(0);
   mem_vfs.szOsFile = sizeof(MemFile);
-  return sqlite3_vfs_register(&mem_vfs, 1);
+  return sqlite3_vfs_register(&mem_vfs, 0);
 }

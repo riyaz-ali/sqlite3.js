@@ -5,10 +5,8 @@
 
 #include <sqlite3.h>
 
-extern sqlite3_vfs memdb_vfs; // externally declared in-memory database vfs
-
 extern int sqlite3_memvfs_init(void); // defined in ext/memvfs.c to register memvfs
-extern int sqlite3_underlay_vfs_init(void); // defined in underlay_vfs.c to register underlay vfs
+extern int sqlite3_http_vfs_init(void); // defined in http_vfs.c to register http vfs
 
 /*
 ** sqlite3_os_init(...) is invoked by sqlite3 core to perform
@@ -16,11 +14,16 @@ extern int sqlite3_underlay_vfs_init(void); // defined in underlay_vfs.c to regi
 */
 int sqlite3_os_init(void) {
   int rc = SQLITE_OK;
-  if((rc = sqlite3_underlay_vfs_init()) != SQLITE_OK) { return rc; }
-  if((rc = sqlite3_memvfs_init()) != SQLITE_OK)       { return rc; }
+  
+  rc = sqlite3_http_vfs_init();
+  if(rc != SQLITE_OK) { return rc; }
 
-  memdb_vfs.pAppData = sqlite3_vfs_find(0);
-  if((rc = sqlite3_vfs_register(&memdb_vfs, 0)) != SQLITE_OK) { return rc; }
+  rc = sqlite3_vfs_register(sqlite3_vfs_find("http"), 1 /* make default */);
+  if(rc != SQLITE_OK) { return rc; }
+
+  rc = sqlite3_memvfs_init();
+  if(rc != SQLITE_OK)   { return rc; }
+
   return rc;
 }
 
