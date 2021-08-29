@@ -13,14 +13,13 @@
   "license": "MIT",
   "scripts": {
     "dev": "WASM_URL=sqlite3.debug.wasm parcel index.html -d build/ --global sqlite3",
-    "build": "WASM_URL=sqlite3.wasm parcel build lib/index.js -d build/ --global sqlite3"
+    "build": "WASM_URL=sqlite3.wasm parcel build lib/worker/index.js -d build/ --global sqlite3"
   },
   "devDependencies": {
     "parcel-bundler": "^1.12.5"
   },
   "dependencies": {
     "@wasmer/wasi": "^0.12.0",
-    "comlink": "^4.3.0",
     "lodash": "^4.17.21"
   }
 }
