@@ -6,9 +6,7 @@ It's [**`sqlite3`**](https://sqlite.org) built for the web! <sup>(:warning: expe
 
 `sqlite3.js` is build of `sqlite3` targetting the web, using [`WebAssembly`](https://webassembly.org). 
 
-We compile from the official [`sqlite3` amalgamation file](./src/sqlite3.c), using [`emcc`](http://emscripten.org), to a _standalone `.wasm` file_ <sup>[[1](https://v8.dev/blog/emscripten-standalone-wasm)] [[2](https://github.com/emscripten-core/emscripten/wiki/WebAssembly-Standalone)]</sup>
-The advantage of compiling to standalone `wasm` instead of the more _traditional_, full-fledged build using `emcc` is that the builds are very minimal (containing just the raw `sqlite3` library);
-no `FS` module emulating a posix filesystem, no pseudo-network stack, no threading, nothing! This works because `sqlite3` itself is [pretty _self-contained_](https://www.sqlite.org/selfcontained.html) and do not
+We compile from the official [`sqlite3` amalgamation file](./src/sqlite3.c), using [`emcc`](http://emscripten.org), to a _standalone `.wasm` file_ <sup>[[1](https://v8.dev/blog/emscripten-standalone-wasm)] [[2](https://github.com/emscripten-core/emscripten/wiki/WebAssembly-Standalone)]</sup> This works because `sqlite3` itself is [pretty _self-contained_](https://www.sqlite.org/selfcontained.html) and do not
 have many (any?) dependency on external environment. To that end, we even [omit the default operating system bindings](https://www.sqlite.org/compile.html#os_other)
 that sqlite3 ships with <sup>[[unix](https://sqlite.org/src/file?name=src/os_unix.c&ci=trunk)] [[windows](https://sqlite.org/src/file?name=src/os_win.c&ci=trunk)]</sup>
 and provide [our own binding for the `wasm` environment](./src/os_wasm.c) (that utilizes [`wasi`](http://wasi.dev)) and ship a [custom build of `sqlite3`](https://www.sqlite.org/custombuild.html).
