@@ -44,3 +44,11 @@ int wasm_crypto_get_random(char* out, int n);
 ** See: lib/worker/environment.js#wasm_get_unix_epoch for default implementation.
 */
 sqlite3_int64 wasm_get_unix_epoch(void);
+
+/*
+** wasm_console_log is a sink for sqlite error log defined in Javascript that sends out
+** log using console.log(...)
+**
+** See: https://www.sqlite.org/errlog.html
+*/
+void wasm_console_log(int code, char* msg);
