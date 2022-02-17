@@ -3,6 +3,8 @@
   "_free",
   "_sqlite3_initialize",
   "_sqlite3_open_v2",
+  "_sqlite3_serialize",
+  "_sqlite3_deserialize",
   "_sqlite3_errcode",
   "_sqlite3_errmsg",
   "_sqlite3_errstr",
@@ -31,5 +33,7 @@
   "_sqlite3_reset",
   "_sqlite3_clear_bindings",
   "_sqlite3_finalize",
-  "_sqlite3_close_v2" 
+  "_sqlite3_close_v2", 
+  "_sqlite3_malloc64", 
+  "_sqlite3_free"
 ]

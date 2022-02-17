@@ -7,6 +7,14 @@
     "args": [],
     "return": "number"
   },
+  "sqlite3_serialize": {
+    "args": ["number", "string", "number", "number"],
+    "return": "number"
+  },
+  "sqlite3_deserialize": {
+    "args": ["number", "string", "number", "number", "number", "number"],
+    "return": "number"
+  },
   "sqlite3_errcode": {
     "args": ["number"],
     "return": "number"
