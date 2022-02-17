@@ -6,7 +6,6 @@
 #include <sqlite3.h>
 #include <os_wasm.h>
 
-extern int sqlite3_memvfs_init(void); // defined in ext/memvfs.c to register memvfs
 extern int sqlite3_http_vfs_init(void); // defined in http_vfs.c to register http vfs
 
 // deflect calls to function defined in javascript
@@ -23,12 +22,6 @@ int sqlite3_os_init(void) {
   
   rc = sqlite3_http_vfs_init();
   if(rc != SQLITE_OK) { return rc; }
-
-  rc = sqlite3_vfs_register(sqlite3_vfs_find("http"), 1 /* make default */);
-  if(rc != SQLITE_OK) { return rc; }
-
-  rc = sqlite3_memvfs_init();
-  if(rc != SQLITE_OK)   { return rc; }
 
   // configure logging sink
   sqlite3_config(SQLITE_CONFIG_LOG, wasm_console_log_deflector, (void*)0);
