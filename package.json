@@ -2,7 +2,7 @@
   "name": "sqlite3.js",
   "version": "1.0.0",
   "description": "sqlite3 for the web",
-  "main": "build/sqlite3.js",
+  "main": "dist/sqlite3.js",
   "directories": {
     "lib": "lib"
   },
