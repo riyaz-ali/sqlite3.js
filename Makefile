@@ -9,6 +9,7 @@ CC			= emcc
 NPM			= npm
 SRCDIR		= src
 BUILDDIR	= build
+DISTDIR		= dist
 
 CFILES		= $(shell find $(SRCDIR) -name *.c)
 OBJFILES	= $(CFILES:%=$(BUILDDIR)/%.o)
@@ -46,19 +47,21 @@ $(BUILDDIR)/%.c.o: %.c
 	$(CC) $(CFLAGS) $(EMFLAGS) -c -o $@ $<
 
 # link built object files into webassembly modules with debugging options applied
-$(BUILDDIR)/sqlite3.debug.wasm: $(OBJFILES)
+$(DISTDIR)/sqlite3.debug.wasm: $(OBJFILES)
+	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(EMFLAGS) -DSQLITE_DEBUG -DSQLITE_ENABLE_API_ARMOR -s INLINING_LIMIT=10 -s ASSERTIONS=1 -g -o $@ $^
 
 # link built object files into webassembly modules with release optimisations
-$(BUILDDIR)/sqlite3.wasm: $(OBJFILES)
+$(DISTDIR)/sqlite3.wasm: $(OBJFILES)
+	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(EMFLAGS) -s INLINING_LIMIT=50 -Os -flto --closure 1 -o $@ $^
 
 # build javascript worker source
-$(BUILDDIR)/sqlite3.js: 
+$(DISTDIR)/sqlite3.js: 
 	$(NPM) run build -- -o $@
 
 # purge build root
 clean:
-	-rm -rf $(BUILDDIR)
+	-rm -rf $(BUILDDIR) $(DISTDIR)
 
 .PHONY: clean

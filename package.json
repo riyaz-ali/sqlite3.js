@@ -2,7 +2,7 @@
   "name": "sqlite3.js",
   "version": "1.0.0",
   "description": "sqlite3 for the web",
-  "main": "lib/index.js",
+  "main": "build/sqlite3.js",
   "directories": {
     "lib": "lib"
   },
@@ -12,8 +12,8 @@
   },
   "license": "MIT",
   "scripts": {
-    "dev": "WASM_URL=sqlite3.debug.wasm parcel index.html -d build/ --global sqlite3",
-    "build": "WASM_URL=sqlite3.wasm parcel build lib/worker/index.js -d build/ --global sqlite3"
+    "dev": "WASM_URL=sqlite3.debug.wasm parcel dev.html -d dist/ --global sqlite3",
+    "build": "WASM_URL=dist/sqlite3.wasm parcel build lib/index.js -d dist/ --global sqlite3"
   },
   "devDependencies": {
     "parcel-bundler": "^1.12.5"
