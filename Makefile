@@ -8,10 +8,12 @@
 CC			= emcc
 NPM			= npm
 SRCDIR		= src
+EXTDIR		= ext
 BUILDDIR	= build
 DISTDIR		= dist
 
 CFILES		= $(shell find $(SRCDIR) -name *.c)
+CFILES	   += $(shell find $(EXTDIR) -name *.c)
 OBJFILES	= $(CFILES:%=$(BUILDDIR)/%.o)
 
 INC_DIRS 	= $(shell find $(SRCDIR) -type d)
@@ -19,6 +21,7 @@ INC_FLAGS 	= $(addprefix -I,$(INC_DIRS))
 
 # Flags to compile sqlite with
 CFLAGS = $(INC_FLAGS)				 \
+	-DSQLITE_CORE					 \
 	-DSQLITE_DQS=0					 \
 	-DSQLITE_THREADSAFE=0 			 \
 	-DSQLITE_DEFAULT_MEMSTATUS=0	 \
@@ -27,7 +30,6 @@ CFLAGS = $(INC_FLAGS)				 \
 	-DSQLITE_OMIT_COMPLETE			 \
 	-DSQLITE_OMIT_DECLTYPE			 \
 	-DSQLITE_OMIT_DEPRECATED		 \
-	-DSQLITE_OMIT_LOAD_EXTENSION 	 \
 	-DSQLITE_OMIT_PROGRESS_CALLBACK	 \
 	-DSQLITE_OMIT_SHARED_CACHE 		 \
 	-DSQLITE_ENABLE_DESERIALIZE 	 \

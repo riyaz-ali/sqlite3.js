@@ -8,6 +8,9 @@
 
 extern int sqlite3_http_vfs_init(void); // defined in http_vfs.c to register http vfs
 
+// statically linked extensions' entrypoints
+extern int sqlite3_series_init(sqlite3*, char**, const sqlite3_api_routines *);
+
 // deflect calls to function defined in javascript
 void wasm_console_log_deflector(void* p, int code, char* msg) {
   wasm_console_log(code, msg);
@@ -25,6 +28,9 @@ int sqlite3_os_init(void) {
 
   // configure logging sink
   sqlite3_config(SQLITE_CONFIG_LOG, wasm_console_log_deflector, (void*)0);
+
+  // register statically linked extensions
+  sqlite3_auto_extension(sqlite3_series_init);
 
   return rc;
 }
