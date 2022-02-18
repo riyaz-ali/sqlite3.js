@@ -39,7 +39,7 @@ CFLAGS = $(INC_FLAGS)				 \
 	-DSQLITE_OS_OTHER=1
 
 # Additional flags to pass to emscripten
-EMFLAGS = --no-entry -s ALLOW_TABLE_GROWTH=1 -s EXPORTED_FUNCTIONS=@functions.json -s ERROR_ON_UNDEFINED_SYMBOLS=0
+EMFLAGS = --no-entry -s ALLOW_TABLE_GROWTH=1 -s ALLOW_MEMORY_GROWTH=1 -s EXPORTED_FUNCTIONS=@functions.json -s ERROR_ON_UNDEFINED_SYMBOLS=0 -Wl,--import-memory
 
 # compile C source-files into LLVM bitcode using emscripten
 $(BUILDDIR)/%.c.o: %.c

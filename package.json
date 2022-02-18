@@ -13,7 +13,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "WASM_URL=sqlite3.debug.wasm parcel dev.html -d dist/ --global sqlite3",
-    "build": "WASM_URL=dist/sqlite3.wasm parcel build lib/index.js -d dist/ --global sqlite3"
+    "build": "WASM_URL=sqlite3.wasm parcel build lib/index.js -d dist/ --global sqlite3"
   },
   "devDependencies": {
     "parcel-bundler": "^1.12.5"
