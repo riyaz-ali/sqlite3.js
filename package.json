@@ -12,14 +12,14 @@
   },
   "license": "MIT",
   "scripts": {
-    "dev": "WASM_URL=sqlite3.debug.wasm parcel dev.html -d dist/ --global sqlite3",
-    "build": "WASM_URL=sqlite3.wasm parcel build lib/index.js -d dist/ --global sqlite3"
+    "build": "webpack --config webpack.config.js"
   },
   "devDependencies": {
-    "parcel-bundler": "^1.12.5"
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.10.0"
   },
   "dependencies": {
     "buffer": "^6.0.3",
-    "lodash": "^4.17.21"
+    "lodash-es": "^4.17.21"
   }
 }
