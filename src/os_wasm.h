@@ -10,25 +10,6 @@
 
 #include <sqlite3.h>
 
-// IS_ACCESSIBLE(var) returns true if var contains permissible access flags
-#define IS_ACCESSIBLE(var) ((((var&HTTP_FILE_READONLY) || (var&HTTP_FILE_READWRITE)) && !(var&HTTP_NO_RANGE_REQUEST)) != 0)
-
-/* ******************** HTTP / Network methods  ******************** */
-
-#define HTTP_FILE_NO_ACCESS  0
-#define HTTP_FILE_READONLY   1
-#define HTTP_FILE_READWRITE  2 /* un-used */
-
-#define HTTP_NO_RANGE_REQUEST 16 // special flag used to indicate Range-Requests are not available
-
-/*
-** wasm_http_file_stat provides information about the file at the path provided
-** such as its size, access mode, etc. using the OUT variables.
-*/
-int wasm_http_file_stat(const char* path, int* access, sqlite3_int64* sz);
-
-int wasm_http_get_bytes(const char* path, void* zBuf, sqlite3_int64 start, sqlite3_int64 end);
-
 
 /* ******************** Other utilty methods  ******************** */
 
@@ -44,11 +25,3 @@ int wasm_crypto_get_random(char* out, int n);
 ** See: lib/worker/environment.js#wasm_get_unix_epoch for default implementation.
 */
 sqlite3_int64 wasm_get_unix_epoch(void);
-
-/*
-** wasm_console_log is a sink for sqlite error log defined in Javascript that sends out
-** log using console.log(...)
-**
-** See: https://www.sqlite.org/errlog.html
-*/
-void wasm_console_log(int code, char* msg);
